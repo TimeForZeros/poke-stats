@@ -17,15 +17,14 @@ type CardProps = {
 const PokeCard = async ({ name, url }: CardProps) => {
   const data = await fetch(url);
   const pokemon = await data.json();
-
   return (
-    <Card className='w-[12rem] '>
+    <Card className='w-[12rem] h-[15rem]'>
       <CardHeader>
         <CardTitle>{name}</CardTitle>
         <CardDescription>Card Description</CardDescription>
         <CardAction>Card Action</CardAction>
       </CardHeader>
-      <CardContent className='justify-center flex'>
+      <CardContent className=''>
         <Image src={pokemon.sprites.front_default} alt={name} height={100} width={100} />
       </CardContent>
       <CardFooter>

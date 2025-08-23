@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic';
 import { PokemonEntry } from './pokeTable';
 import PokeCard from './poke-card';
 
-const POKE_API = 'https://pokeapi.co/api/v2/pokemon?limit=4';
+const POKE_API = 'https://pokeapi.co/api/v2/pokemon?limit=100';
 
 // const PokeTable = dynamic(() => import('./pokeTable'));
 
@@ -13,14 +13,14 @@ const Dashboard = async () => {
   return (
     <div>
       <div>test</div>
+        <div className='m-2 flex flex-wrap max-w-screen h-screen'>
       <Suspense fallback={'Loading....'}>
-        <div className='flex'>
         {data.map((entry) => (
           <PokeCard key={entry.name} name={entry.name} url={entry.url} />
         ))}
         {/* <PokeTable data={data} /> */}
-        </div>
       </Suspense>
+        </div>
     </div>
   );
 };
