@@ -82,14 +82,12 @@ const PokeTable = ({ data }: { data: PokemonEntry[] }) => {
               </TableRow>
             ))}
           </TableHeader>
-          {/* <TableBody className="overflow-auto h-[400px]"> */}
-          <tbody>
+          <TableBody>
             {virtualizer.getVirtualItems().map((virtualRow, index) => {
               const row = rows[virtualRow.index];
               return <PokeRow key={row.id} row={row} />;
             })}
-          </tbody>
-          {/* </TableBody> */}
+          </TableBody>
         </Table>
       </div>
     </div>
