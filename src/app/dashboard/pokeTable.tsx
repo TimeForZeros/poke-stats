@@ -68,28 +68,30 @@ const PokeTable = ({ data }: { data: PokemonEntry[] }) => {
   const items = virtualizer.getVirtualItems();
 
   return (
-    <div ref={parentRef}>
-      <Table>
-        <TableHeader>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow key={headerGroup.id}>
-              {headerGroup.headers.map((header) => (
-                <TableHead key={header.id}>
-                  {flexRender(header.column.columnDef.header, header.getContext())}
-                </TableHead>
-              ))}
-            </TableRow>
-          ))}
-        </TableHeader>
-        {/* <TableBody className="overflow-auto h-[400px]"> */}
-          <tbody className="overflow-auto h-[400px]">
+    <div className="overflow-auto h-[90vh]">
+      <div ref={parentRef} style={{ height: `${virtualizer.getTotalSize()}px` }}>
+        <Table>
+          <TableHeader>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <TableRow key={headerGroup.id}>
+                {headerGroup.headers.map((header) => (
+                  <TableHead key={header.id}>
+                    {flexRender(header.column.columnDef.header, header.getContext())}
+                  </TableHead>
+                ))}
+              </TableRow>
+            ))}
+          </TableHeader>
+          {/* <TableBody className="overflow-auto h-[400px]"> */}
+          <tbody>
             {virtualizer.getVirtualItems().map((virtualRow, index) => {
               const row = rows[virtualRow.index];
               return <PokeRow key={row.id} row={row} />;
             })}
           </tbody>
-        {/* </TableBody> */}
-      </Table>
+          {/* </TableBody> */}
+        </Table>
+      </div>
     </div>
   );
 };
