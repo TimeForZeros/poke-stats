@@ -16,7 +16,6 @@ import {
   type Row,
   type Cell,
 } from '@tanstack/react-table';
-import { useVirtualizer, notUndefined } from '@tanstack/react-virtual';
 import { useRef } from 'react';
 
 export type PokemonEntry = {
@@ -58,38 +57,26 @@ const PokeTable = ({ data }: { data: PokemonEntry[] }) => {
 
   const { rows } = table.getRowModel();
 
-  const virtualizer = useVirtualizer({
-    count: rows.length,
-    getScrollElement: () => parentRef.current,
-    estimateSize: () => 25,
-    overscan: 5,
-  });
-
-  const items = virtualizer.getVirtualItems();
-
   return (
     <div className="overflow-auto h-[90vh]">
-      <div ref={parentRef} style={{ height: `${virtualizer.getTotalSize()}px` }}>
-        <Table>
-          <TableHeader>
-            {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map((header) => (
-                  <TableHead key={header.id}>
-                    {flexRender(header.column.columnDef.header, header.getContext())}
-                  </TableHead>
-                ))}
-              </TableRow>
-            ))}
-          </TableHeader>
-          <TableBody>
-            {virtualizer.getVirtualItems().map((virtualRow, index) => {
-              const row = rows[virtualRow.index];
-              return <PokeRow key={row.id} row={row} />;
-            })}
-          </TableBody>
-        </Table>
-      </div>
+      <Table>
+        <TableHeader>
+          {table.getHeaderGroups().map((headerGroup) => (
+            <TableRow key={headerGroup.id}>
+              {headerGroup.headers.map((header) => (
+                <TableHead key={header.id}>
+                  {flexRender(header.column.columnDef.header, header.getContext())}
+                </TableHead>
+              ))}
+            </TableRow>
+          ))}
+        </TableHeader>
+        <TableBody>
+          {rows.map((row, index) => (
+            <PokeRow key={row.id} row={row} />
+          ))}
+        </TableBody>
+      </Table>
     </div>
   );
 };
