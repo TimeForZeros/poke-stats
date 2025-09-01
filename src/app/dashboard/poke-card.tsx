@@ -1,4 +1,3 @@
-import { Button } from '@/components/ui/button';
 import {
   Card,
   CardAction,
@@ -10,29 +9,18 @@ import {
 } from '@/components/ui/card';
 import Image from 'next/image';
 import PokeDetails from './poke-details';
+import { useDetailsStore } from './details-store';
 
-type CardProps = {
-  name: string;
-  url: string;
-};
-
-const fetchDetails = async (name: string) => {
-  const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
-  const details = await res.json();
-};
-
-const PokeCard = async ({ name, url }: CardProps) => {
-  const data = await fetch(url);
-  const pokemon = await data.json();
+const PokeCard = ({ data }) => {
   return (
     <Card className="w-[12rem] h-[15rem]">
       <CardHeader>
-        <CardTitle>{name}</CardTitle>
+        <CardTitle>{data.name}</CardTitle>
         <CardDescription>Card Description</CardDescription>
         <CardAction>Card Action</CardAction>
       </CardHeader>
-      <CardContent className="">
-        <Image src={pokemon.sprites.front_default} alt={name} height={100} width={100} />
+      <CardContent >
+        <Image data-pokemon-name={data.name} className="cursor-pointer" src={data.sprites.front_default} alt={data.name} height={100} width={100} />
       </CardContent>
     </Card>
   );

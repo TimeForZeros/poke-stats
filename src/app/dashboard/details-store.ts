@@ -37,7 +37,13 @@ type PokeType = {
   pokemon: TypeEntry[],
 }
 
-const detailsStore = create((set) => {
+type DetailsProps = {
+  isOpen: boolean,
+  details: any
+}
+
+export const useDetailsStore= create<DetailsProps> ((set) => ({
   isOpen: false,
   details: null
-})
+
+}))

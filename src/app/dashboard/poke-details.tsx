@@ -8,17 +8,16 @@ import {
 } from '@/components/ui/dialog';
 
 import { Button } from '@/components/ui/button';
+import { create } from 'zustand';
+import { useDetailsStore } from './details-store';
 
-type PokeProps = {
-  details: any;
-};
-
-const PokeDetails = ({ details }: PokeProps) => {
+const PokeDetails = () => {
+  const store = useDetailsStore();
   return (
-    <Dialog open={details.isOpen}>
+    <Dialog open={store.isOpen}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Are you absolutely sure?</DialogTitle>
+          <DialogTitle>{store.name}</DialogTitle>
           <DialogDescription>
             This action cannot be undone. This will permanently delete your account and remove your
             data from our servers.
