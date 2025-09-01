@@ -1,3 +1,4 @@
+"use client"
 import {
   Dialog,
   DialogContent,
@@ -13,11 +14,12 @@ import { useDetailsStore } from './details-store';
 
 const PokeDetails = () => {
   const store = useDetailsStore();
+  if (!store.details) return;
   return (
-    <Dialog open={store.isOpen}>
+    <Dialog open={store.isOpen} onOpenChange={() => store.setIsOpen(false)}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>{store.name}</DialogTitle>
+          <DialogTitle>{store.details.name}</DialogTitle>
           <DialogDescription>
             This action cannot be undone. This will permanently delete your account and remove your
             data from our servers.

@@ -12,12 +12,9 @@ const Dashboard = async () => {
   const pokeList = await getPokeList();
   return (
     <div>
+      <PokeDetails />
       <Suspense fallback={'Loading....'}>
-        <PokeList>
-          {pokeList.map((entry) => (
-            <PokeCard key={entry.name} data={entry} />
-          ))}
-        </PokeList>
+        <PokeList pokeList={pokeList} />
       </Suspense>
     </div>
   );
