@@ -1,3 +1,4 @@
+import { Pokemon } from 'pokedex-promise-v2';
 import { create } from 'zustand';
 
 type PokeLink = {
@@ -38,7 +39,7 @@ type PokeType = {
 
 type DetailsProps = {
   isOpen: boolean;
-  details: any;
+  details: Pokemon | null;
 };
 type DetailsActions = {
   setIsOpen: (open: boolean) => void,

@@ -6,12 +6,11 @@ import PokeDetails from './poke-details';
 import { getPokeList } from './actions';
 import PokeList from './poke-list';
 
-const POKE_API = 'https://pokeapi.co/api/v2/pokemon?limit=100';
-
 const Dashboard = async () => {
   const pokeList = await getPokeList();
   return (
     <div>
+      <span>test</span>
       <PokeDetails />
       <Suspense fallback={'Loading....'}>
         <PokeList pokeList={pokeList} />

@@ -2,14 +2,17 @@
 import React from 'react';
 import PokeCard from './poke-card';
 import { useDetailsStore } from './details-store';
+import type { Pokemon } from 'pokedex-promise-v2';
 
-const PokeList = ({ pokeList }) => {
+const PokeList = ({ pokeList }: { pokeList: Pokemon[] }) => {
   const store = useDetailsStore();
   const handleClick = (evt: React.MouseEvent<HTMLImageElement>) => {
-    if (!(evt.target instanceof HTMLImageElement)) return;
-    store.setDetails({ name: evt.target.alt });
+    const pokemon = pokeList.find(
+      (pokemon) => pokemon.name === (evt.target as HTMLImageElement).alt,
+    );
+    if (!pokemon) return;
+    store.setDetails(pokemon);
     store.setIsOpen(true);
-    console.log(evt.target.alt);
   };
   return (
     <div>

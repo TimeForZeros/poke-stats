@@ -10,12 +10,13 @@ import {
 import Image from 'next/image';
 import PokeDetails from './poke-details';
 import { useDetailsStore } from './details-store';
+import { capitalize } from '@/lib/utils';
 
 const PokeCard = ({ data }) => {
   return (
     <Card className="w-[12rem] h-[15rem]">
       <CardHeader>
-        <CardTitle>{data.name}</CardTitle>
+        <CardTitle>{capitalize(data.name)}</CardTitle>
         <CardDescription>Card Description</CardDescription>
         <CardAction>Card Action</CardAction>
       </CardHeader>
