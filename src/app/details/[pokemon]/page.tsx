@@ -8,6 +8,7 @@ import {
   PokemonStatsComponent,
 } from '@/components/pokemon';
 import { capitalize } from '@/lib/utils';
+import MovesTable from './moves-table';
 
 interface PokemonParams extends Params {
   pokemon: string;
@@ -16,11 +17,11 @@ interface PokemonParams extends Params {
 const DetailsComponent = async ({ params }: { params: PokemonParams }) => {
   const { pokemon } = await params;
   const pokeDetails = await getPokemonDetails(pokemon);
-  const pokeMoves = await getPokemonMoves(pokeDetails.moves);
   return (
     <div className="w-screen">
       <div className="mx-auto w-1/2 flex justify-center">
         <h1 className="text-4xl">{capitalize(pokemon)}</h1>
+        <MovesTable pokeMoves={pokeDetails.moves} genName='red-blue' />
       </div>
     </div>
   );
