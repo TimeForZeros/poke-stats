@@ -3,13 +3,10 @@ import {
   CardAction,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
 import Image from 'next/image';
-import PokeDetails from './poke-details';
-import { useDetailsStore } from './details-store';
 import { capitalize } from '@/lib/utils';
 
 const PokeCard = ({ data }) => {
