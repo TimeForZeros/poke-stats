@@ -1,14 +1,10 @@
-'use client';
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from '@/components/ui/dialog';
 
-import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { useDetailsStore } from './details-store';
 import { capitalize } from '@/lib/utils';
@@ -45,7 +41,7 @@ const PokeDetails = () => {
         </div>
         <PokemonStatsComponent stats={store.details.stats} />
         <Button variant="link">
-          <Link href={`/details/${store.details.name}`}>More Details</Link>
+          <a href={`/details/${store.details.name}`}>More Details</a>
         </Button>
       </DialogContent>
     </Dialog>

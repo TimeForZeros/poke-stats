@@ -1,17 +1,22 @@
-'use client';
-import React, { useEffect, useState } from 'react';
 import PokeCard from './poke-card';
-import { useQuery } from '@tanstack/react-query';
-
+import { useSuspenseQuery } from '@tanstack/react-query';
 const PokeList = () => {
-  const {results} = useQuery({
+  const { data: pokeList } = useSuspenseQuery({
     queryKey: ['pokeList'],
     queryFn: async () => {
-      const res = await fetch('https://pokeapi.co/api/v2/pokemon?limit=10');
+      const offset = 0;
+      const res = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=10&offset=${offset}`);
       const { results } = await res.json();
-      return
+      return await Promise.all(
+        results.map(async (pokeItem) => {
+          const res = await fetch(pokeItem.url);
+          const data = await res.json();
+          return data;
+        }),
+      );
     },
   });
+
   return (
     <div>
       <div className="m-2 flex flex-wrap max-w-screen h-screen">

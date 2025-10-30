@@ -6,7 +6,6 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import Image from 'next/image';
 import { capitalize } from '@/lib/utils';
 
 const PokeCard = ({ data }) => {
@@ -18,7 +17,7 @@ const PokeCard = ({ data }) => {
         <CardAction>Card Action</CardAction>
       </CardHeader>
       <CardContent >
-        <Image data-pokemon-name={data.name} className="cursor-pointer" src={data.sprites.front_default} alt={data.name} height={100} width={100} />
+        <img data-pokemon-name={data.name} className="cursor-pointer" src={data.sprites.front_default} alt={data.name} height={100} width={100} />
       </CardContent>
     </Card>
   );
