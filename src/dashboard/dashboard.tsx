@@ -1,9 +1,9 @@
-import PokemonContainer from "./pokemon-container";
+import PokeDetails from "./poke-details";
 
 const Dashboard = () => {
   return (
-    <main>
-      <PokemonContainer />
+    <main className='w-screen h-screen'>
+      <PokeDetails />
     </main>
   );
 };
